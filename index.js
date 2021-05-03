@@ -15,7 +15,7 @@ function createSunBurst(svgId, data) {
 
   const format = d3.format(',d');
   let color = d3.scaleOrdinal(
-    d3.quantize(d3.interpolateRainbow, data.children.length + 1)
+    d3.quantize(d3.interpolateRainbow, data.children.length + 2)
   );
 
   const partition = (data) => {
@@ -91,8 +91,8 @@ function createSunBurst(svgId, data) {
 
   function clicked(event, p) {
     parent.datum(p.parent || root);
-    color = d3.scaleOrdinal(
-      d3.quantize(d3.interpolateRainbow, p.children.length + 1)
+    let newColor = d3.scaleOrdinal(
+      d3.quantize(d3.interpolateRainbow, p.children.length + 2)
     );
 
     root.each(
@@ -129,7 +129,7 @@ function createSunBurst(svgId, data) {
         if (d.parent !== p) {
           d = d.parent;
         }
-        return color(d.data.name);
+        return newColor(d.data.name);
       })
       .attr('fill-opacity', (d) =>
         arcVisible(d.target) ? (d.children ? 0.6 : 0.4) : 0
