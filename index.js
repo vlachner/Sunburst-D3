@@ -1,5 +1,5 @@
 // Parameters
-const width = window.screen.width;
+const width = 850;
 const radius = width / 6;
 
 // Create Sunburt Function
